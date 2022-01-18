@@ -14,3 +14,15 @@ bin
 .settings
 .springBeans
 .sts4-cache
+
+product/HELP.md
+product/target/
+
+### STS ###
+product/.apt_generated
+product/.classpath
+product/.factorypath
+product/.project
+product/.settings
+product/.springBeans
+product/.sts4-cache
