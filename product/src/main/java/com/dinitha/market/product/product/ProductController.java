@@ -1,8 +1,7 @@
 package com.dinitha.market.product.product;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,26 +20,40 @@ public class ProductController {
 	private ProductService productService;
 
 	@GetMapping
-	public List<Product> getAllProducts(
-			@RequestParam(required = false) String query
+	public Page<Product> getAllProducts(
+			@RequestParam(name = "query", required = false) String query,
+			@RequestParam(name = "page-number", required = false) Integer pageNumber,
+			@RequestParam(name = "page-size", required = false) Integer pageSize
 		) {
-		if (query != null) return productService.listProductsBySearchQuery(query);
-		return productService.listAll();
+		if (query != null) return productService.listProductsBySearchQuery(query, pageNumber, pageSize);
+		return productService.listAll(pageNumber, pageSize);
 	}
 
 	@GetMapping(params = {"department-id"})
-	public List<Product> getProductsByDepartmentId(@RequestParam Long departmentId) {
-		return productService.listProductsByDepartmentId(departmentId);
+	public Page<Product> getProductsByDepartmentId(
+			@RequestParam(name = "department-id") Long departmentId,
+			@RequestParam(name = "page-number", required = false) Integer pageNumber,
+			@RequestParam(name = "page-size", required = false) Integer pageSize
+		) {
+		return productService.listProductsByDepartmentId(departmentId, pageNumber, pageSize);
 	}
 	
 	@GetMapping(params = {"sub-department-id"})
-	public List<Product> getProductsBySubDepartmentId(@RequestParam Long subDepartmentId) {
-		return productService.listProductsBySubDepartmentId(subDepartmentId);
+	public Page<Product> getProductsBySubDepartmentId(
+			@RequestParam(name = "sub-department-id") Long subDepartmentId,
+			@RequestParam(name = "page-number", required = false) Integer pageNumber,
+			@RequestParam(name = "page-size", required = false) Integer pageSize
+		) {
+		return productService.listProductsBySubDepartmentId(subDepartmentId, pageNumber, pageSize);
 	}
 	
 	@GetMapping(params = {"category-id"})
-	public List<Product> getProductsByCategoryId(@RequestParam Long categoryId) {
-		return productService.listProductsByCategoryId(categoryId);
+	public Page<Product> getProductsByCategoryId(
+			@RequestParam(name = "category-id") Long categoryId,
+			@RequestParam(name = "page-number", required = false) Integer pageNumber,
+			@RequestParam(name = "page-size", required = false) Integer pageSize
+		) {
+		return productService.listProductsByCategoryId(categoryId, pageNumber, pageSize);
 	}
 	
 	@PostMapping
