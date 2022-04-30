@@ -46,13 +46,13 @@ public class Product {
 	private String productImageURL;
 	
 	@Column(name = "product_min_quantity", nullable = false)
-	private int productMinQuantity;
+	private float productMinQuantity;
 	
 	@Column(name = "product_max_quantity", nullable = false)
-	private int productMaxQuantity;
+	private float productMaxQuantity;
 	
 	@Column(name = "product_quantity_increment", nullable = false)
-	private int productQuantityIncrement;
+	private float productQuantityIncrement;
 	
 	@Column(name = "product_popularity_score", nullable = false)
 	private float productPopularityScore;
