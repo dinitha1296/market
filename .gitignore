@@ -26,3 +26,7 @@ product/.project
 product/.settings
 product/.springBeans
 product/.sts4-cache
+
+
+### Docker ###
+.attach_pid*
