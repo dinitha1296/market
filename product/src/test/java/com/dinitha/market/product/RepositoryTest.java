@@ -26,63 +26,63 @@ import com.dinitha.market.product.subdepartment.SubDepartmentRepository;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class RepositoryTest {
 
-	@Autowired private ProductRepository productRepository;
-	@Autowired private CategoryRepository categoryRepository;
-	@Autowired private SubDepartmentRepository subDepartmentRepository;
-	@Autowired private DepartmentRepository departmentRepository;
-	
-	@Test
-	@Order(1)
-	public void testRepositoryAutoWiring() {
-		assertThat(productRepository).isNotNull();
-		assertThat(categoryRepository).isNotNull();
-		assertThat(subDepartmentRepository).isNotNull();
-		assertThat(departmentRepository).isNotNull();
-	}
-	
-	@Test
-	@Order(2)
-	@Rollback(false)
-	public void testEntityCreation() {
-		
-		Department department = Department.builder()
-				.departmentName("Department")
-				.departmentCode("D")
-				.build();
-		
-		departmentRepository.save(department);
-		
-		SubDepartment subDepartment = SubDepartment.builder()
-				.subDepartmentName("Sub department")
-				.subDepartmentCode("DSD")
-				.department(department)
-				.build();
-		
-		subDepartmentRepository.save(subDepartment);
-		
-		Category category = Category.builder()
-				.categoryName("Category")
-				.categoryCode("DSDCT")
-				.subDepartment(subDepartment)
-				.build();
-		
-		categoryRepository.save(category);
-		
-		Product product = Product.builder()
-				.productName("Product")
-				.productDescription("Product descripton")
-				.productUnitPrice(200d)
-				.productMinQuantity(1)
-				.productMaxQuantity(20)
-				.productQuantityIncrement(1)
-				.category(category)
-				.build();
-		
-		productRepository.save(product);
-		
-		assertThat(department.getDepartmentId()).isGreaterThan(0);
-		assertThat(subDepartment.getSubDepartmentId()).isGreaterThan(0);
-		assertThat(category.getCategoryId()).isGreaterThan(0);
-		assertThat(product.getProductId()).isGreaterThan(0);
-	}
+//	@Autowired private ProductRepository productRepository;
+//	@Autowired private CategoryRepository categoryRepository;
+//	@Autowired private SubDepartmentRepository subDepartmentRepository;
+//	@Autowired private DepartmentRepository departmentRepository;
+//	
+//	@Test
+//	@Order(1)
+//	public void testRepositoryAutoWiring() {
+//		assertThat(productRepository).isNotNull();
+//		assertThat(categoryRepository).isNotNull();
+//		assertThat(subDepartmentRepository).isNotNull();
+//		assertThat(departmentRepository).isNotNull();
+//	}
+//	
+//	@Test
+//	@Order(2)
+//	@Rollback(false)
+//	public void testEntityCreation() {
+//		
+//		Department department = Department.builder()
+//				.departmentName("Department")
+//				.departmentCode("D")
+//				.build();
+//		
+//		departmentRepository.save(department);
+//		
+//		SubDepartment subDepartment = SubDepartment.builder()
+//				.subDepartmentName("Sub department")
+//				.subDepartmentCode("DSD")
+//				.department(department)
+//				.build();
+//		
+//		subDepartmentRepository.save(subDepartment);
+//		
+//		Category category = Category.builder()
+//				.categoryName("Category")
+//				.categoryCode("DSDCT")
+//				.subDepartment(subDepartment)
+//				.build();
+//		
+//		categoryRepository.save(category);
+//		
+//		Product product = Product.builder()
+//				.productName("Product")
+//				.productDescription("Product descripton")
+//				.productUnitPrice(200d)
+//				.productMinQuantity(1)
+//				.productMaxQuantity(20)
+//				.productQuantityIncrement(1)
+//				.category(category)
+//				.build();
+//		
+//		productRepository.save(product);
+//		
+//		assertThat(department.getDepartmentId()).isGreaterThan(0);
+//		assertThat(subDepartment.getSubDepartmentId()).isGreaterThan(0);
+//		assertThat(category.getCategoryId()).isGreaterThan(0);
+//		assertThat(product.getProductId()).isGreaterThan(0);
+//	}
 }
